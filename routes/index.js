@@ -4,7 +4,6 @@ const router = require("express").Router();
 router.use(require("../controllers/recent/resetSessionRecent"));
 router.use(require("../controllers/code/resetSessionCode"));
 router.use("/api", require("./api"));
-// router.use("/console", require("../public"));   
 router.all("*", require("../controllers/page404"));
 router.use(require("../middleware/errorHandler"));
 
