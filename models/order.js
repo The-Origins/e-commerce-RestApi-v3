@@ -30,6 +30,29 @@ const locationSchema = new mongoose.Schema({
     },
   });
 
+  const orderItemSchema = new mongoose.Schema({
+    product: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Product",
+    },
+    quantity: {
+      type: Number,
+      required: true,
+      default: 1,
+    },
+    variant: String,
+    total: Number,
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+      immutable: true,
+    },
+    updatedAt: {
+      type: Date,
+      default: Date.now(),
+    },
+  });
+  
 
 //Schema for the order
 const orderSchema = new mongoose.Schema({
@@ -40,11 +63,16 @@ const orderSchema = new mongoose.Schema({
     },
     order:{
         type:{
-            items:[],
+            items:[orderItemSchema],
             total:Number
         }
     },
-    deliveryLocation:locationSchema
+    deliveryLocation:locationSchema,
+    stage:
+    {
+        type:String,
+        default:`Processing`
+    }
 },
 {
     timestamps:true

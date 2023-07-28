@@ -57,6 +57,10 @@ router.delete(
   require("../middleware/updateCart")
 )
 
-router.post("/checkout", require("../middleware/isAuthenticatedAndVerified"), require("../controllers/order/checkout"))
+//handle checkout
+router.post("/checkout", require("../middleware/isAuthenticatedAndVerified"), require("../controllers/user/checkout"))
+
+//retrieve user orders
+router.get("/orders", require("../middleware/isAuthenticatedAndVerified"), require("../controllers/user/getUserOrders"))
 
 module.exports = router;
